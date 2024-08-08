@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camera Capture</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .camera-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    #video, #canvas, #photo {
+      display: block;
+      margin: 10px auto;
+      max-width: 100%;
+      height: auto;
+    }
+    #take {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px auto;
+      width: 320px;
+    }
+    #retake, #upload {
+      padding: 10px 20px;
+      font-size: 16px;
+      width: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-button {
+      background: none;
+      border: 1;
+      border-color: #2336af;
+      cursor: pointer;
+      color: #2336af;
+    }
+    .icon-button:hover{
+      background: #2336af;
+      cursor: pointer;
+    }
+    i{
+        font-size: 30px;
+    }
+
+    @media (max-width: 600px) {
+      .button-container {
+        flex-direction: column;
+        width: 100%;
+      }
+      #retake, #upload {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="camera-container">
+    <video id="video" width="320" height="240" autoplay></video>
+    <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+    <img id="photo" src="" alt="Captured Photo" style="display: none;">
+    <button type="button" id="take" class="icon-button"><i class="fas fa-camera"></i></button>
+    <div class="button-container" style="display: none;">
+      <button type="button" id="retake" class="icon-button"><i class="fas fa-redo"></i></button>
+      <button type="button" id="upload" class="icon-button"><i class="fas fa-upload"></i></button>
+    </div>
+    <input type="hidden" id="photoData" name="acf[field_659cc8a60e0ed]">
+  </div>
+  <script type="module">
+    import CameraCapture from './cameraCapture.js';
+    new CameraCapture('video', 'canvas', 'photo', 'take', 'retake', 'upload', '.button-container', 'photoData');
+  </script>
+</body>
+</html>
